@@ -13,17 +13,21 @@ interface CardListProp {
     category: string;
     price: number;
   }[];
+  title: string;
 }
 
-function CardList({ desserts }: CardListProp) {
+function CardList({ desserts, title }: CardListProp) {
   return (
-    <ul>
-      {desserts.map((dessert, index) => (
-        <li key={index}>
-          <Card dessert={dessert} />
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1 className="font-bold text-3xl">{title}</h1>
+      <ul>
+        {desserts.map((dessert, index) => (
+          <li key={index}>
+            <Card dessert={dessert} />
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

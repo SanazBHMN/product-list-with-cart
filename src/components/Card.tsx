@@ -22,7 +22,7 @@ interface CardProp {
 
 function Card({ dessert }: CardProp) {
   return (
-    <div className="w-11/12 m-auto mb-8">
+    <div className="my-8">
       <Image imageSource={dessert.image} altText={dessert.name} />
       <Button icon={cart} />
       <div className="mt-4">
