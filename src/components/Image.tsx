@@ -26,7 +26,11 @@ function Image({ imageSource, altText }: ImageProp) {
       ? imageSource.tablet
       : imageSource.desktop;
   return (
-    <div className={`${typeof imageSource === "string" ? "w-48 m-auto" : ""}`}>
+    <div
+      className={`${
+        typeof imageSource === "string" ? "w-48 m-auto xl:w-32" : ""
+      }`}
+    >
       <img className="w-full rounded-xl" src={selectedImage} alt={altText} />
     </div>
   );

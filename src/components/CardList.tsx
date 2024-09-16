@@ -13,14 +13,12 @@ interface CardListProp {
     category: string;
     price: number;
   }[];
-  title: string;
 }
 
-function CardList({ desserts, title }: CardListProp) {
+function CardList({ desserts }: CardListProp) {
   return (
     <>
-      <h1 className="font-bold text-3xl">{title}</h1>
-      <ul>
+      <ul className="md:grid md:grid-cols-3 gap-4">
         {desserts.map((dessert, index) => (
           <li key={index}>
             <Card dessert={dessert} />

@@ -22,10 +22,11 @@ function App() {
     }[]
   >(data);
   return (
-    <main className="w-full min-h-screen bg-Rose-100 py-14">
-      <div className="w-11/12 m-auto">
+    <main className="w-full min-h-screen bg-Rose-100 py-14 xl:px-28">
+      <div className="w-11/12 m-auto xl:flex xl:justify-around xl:gap-10">
         <section>
-          <CardList desserts={desserts} title="Desserts" />
+          <h1 className="font-bold text-3xl">Desserts</h1>
+          <CardList desserts={desserts} />
         </section>
         <aside>
           <Cart title="Your cart" />

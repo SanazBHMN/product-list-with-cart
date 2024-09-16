@@ -9,7 +9,7 @@ interface CartProps {
 
 function Cart({ title }: CartProps) {
   return (
-    <div className="bg-white p-5 rounded-xl">
+    <div className="bg-white p-5 rounded-xl xl:w-[400px]">
       <h2 className="text-xl font-bold text-primary">{title} (0)</h2>
       <Image imageSource={emptyCart} altText="Empty cart illustration" />
       <p className="text-center text-Rose-500 font-bold">
