@@ -1,7 +1,12 @@
 import "./App.css";
+import { Cart } from "./components/Cart";
 
 function App() {
-  return <h3 className="text-3xl font-bold underline">HELLO WORLD!</h3>;
+  return (
+    <div className="p-6">
+      <Cart />
+    </div>
+  );
 }
 
 export default App;
