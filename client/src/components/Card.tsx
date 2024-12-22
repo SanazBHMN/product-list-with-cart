@@ -22,13 +22,15 @@ export const Card = ({ product }: CardProps) => {
       : product.image.desktop;
 
   return (
-    <div className="">
-      <div>
-        <img src={productImage} alt="" className="rounded-md" />
+    <div>
+      <img src={productImage} alt="" className="rounded-md" />
+      <div className="flex justify-center">
         <IconButton icon={cartIcon} text="Add to Cart" alt="cart" />
-        <p>{product.category}</p>
-        <p>{product.name}</p>
-        <p>${product.price}</p>
+      </div>
+      <div className="mt-3 flex flex-col gap-1">
+        <p className="text-rose-500 text-sm">{product.category}</p>
+        <p className="text-rose-900 font-semibold">{product.name}</p>
+        <p className="text-primary font-semibold text-xl">${product.price}</p>
       </div>
     </div>
   );
