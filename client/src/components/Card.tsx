@@ -11,10 +11,19 @@ import { Button } from "./Button";
 
 interface CardProps {
   product: Product;
+  order: number;
+  handleButtonClick: (id: number) => void;
+  handleIncrement: (id: number) => void;
+  handleDecrement: (id: number) => void;
 }
 
-export const Card = ({ product }: CardProps) => {
-  const [order, setOrder] = useState<number>(0);
+export const Card = ({
+  product,
+  order,
+  handleButtonClick,
+  handleIncrement,
+  handleDecrement,
+}: CardProps) => {
   const windowWidth = useSize();
 
   const productImage =
@@ -23,19 +32,6 @@ export const Card = ({ product }: CardProps) => {
       : windowWidth < 1024
       ? product.image.tablet
       : product.image.desktop;
-
-  const handleButtonClick = () => {
-    setOrder(order + 1);
-    console.log(order);
-  };
-
-  const handleIncrement = () => {
-    setOrder(order + 1);
-  };
-
-  const handleDecrement = () => {
-    setOrder(order - 1);
-  };
 
   return (
     <div>
@@ -53,9 +49,10 @@ export const Card = ({ product }: CardProps) => {
       ) : (
         <div className="flex justify-center">
           <Button
+            id={product.id}
             text={order}
-            handleIncrement={handleIncrement}
-            handleDecrement={handleDecrement}
+            handleIncrement={() => handleIncrement(product.id)}
+            handleDecrement={() => handleDecrement(product.id)}
           />
         </div>
       )}

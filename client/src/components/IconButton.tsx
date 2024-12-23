@@ -3,7 +3,7 @@ interface IconButtonProps {
   icon: string;
   text: string;
   alt?: string;
-  onClick: () => void;
+  onClick: (id: number) => void;
 }
 
 export const IconButton = ({
@@ -15,7 +15,7 @@ export const IconButton = ({
 }: IconButtonProps) => {
   return (
     <button
-      onClick={onClick}
+      onClick={() => onClick(id)}
       className="flex justify-between items-center gap-2 bg-white rounded-full py-3 px-8 font-semibold text-rose-900 border border-primary relative -mt-6 hover:text-primary"
     >
       <img src={icon} alt={alt} />
