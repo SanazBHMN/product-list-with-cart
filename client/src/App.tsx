@@ -49,7 +49,7 @@ function App() {
       ) : (
         <p>LOADING...</p>
       )}
-      <Cart />
+      <Cart products={productsList} order={order} />
     </div>
   );
 }

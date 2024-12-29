@@ -1,32 +1,32 @@
 // components
 import { EmptyCart } from "./EmptyCart";
-// icons
-import removeIcon from "../assets/icons/icon-remove-item.svg";
+import { CartList } from "./CartList";
+// types
+import { Product } from "../types";
 
-export const Cart = () => {
+interface CartProps {
+  products: Product[] | null;
+  order: Record<number, number>;
+}
+
+export const Cart = ({ products, order }: CartProps) => {
+  console.log(order);
+
+  if (!products) return null;
+
+  const cartItems = products.filter((product) => order[product.id] > 0);
+
   return (
-    <>
-      <div className="bg-white p-6 pb-10 flex flex-col gap-8 justify-center items-center rounded-2xl">
-        <p className="text-primary font-bold text-xl self-start">
-          Your Cart (0)
-        </p>
-        <div className="flex flex-col gap-8 justify-center items-center">
-          {/* <EmptyCart /> */}
-          <ul className="flex flex-col gap-8 justify-center items-center">
-            <li className="flex justify-between">
-              <div>
-                <p>Classic Tiramisu</p>
-                <p>
-                  1x <span>@ $5.50</span> <span>%5.50</span>
-                </p>
-              </div>
-              <button>
-                <img src={removeIcon} alt="" />
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </>
+    <div className="bg-white p-6 pb-10 flex flex-col gap-8 justify-center items-center rounded-2xl">
+      <p className="text-primary font-bold text-xl self-start">
+        {/* TODO: Show total number of the orders */}
+        Your Cart ({cartItems.length})
+      </p>
+      {cartItems.length === 0 ? (
+        <EmptyCart />
+      ) : (
+        <CartList cartItems={cartItems} />
+      )}
+    </div>
   );
 };

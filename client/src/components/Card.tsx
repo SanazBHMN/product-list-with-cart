@@ -34,7 +34,7 @@ export const Card = ({
       : product.image.desktop;
 
   return (
-    <div>
+    <li>
       <img src={productImage} alt="" className="rounded-md" />
       {order === 0 ? (
         <div className="flex justify-center">
@@ -59,8 +59,10 @@ export const Card = ({
       <div className="mt-3 flex flex-col gap-1">
         <p className="text-rose-500 text-sm">{product.category}</p>
         <p className="text-rose-900 font-semibold">{product.name}</p>
-        <p className="text-primary font-semibold text-xl">${product.price}</p>
+        <p className="text-primary font-semibold text-xl">
+          ${product.price.toFixed(2)}
+        </p>
       </div>
-    </div>
+    </li>
   );
 };

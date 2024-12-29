@@ -9,7 +9,7 @@ const useProductsList = (): [() => Promise<void>, Product[] | null] => {
     try {
       const response = await axios.get("http://localhost:8080/products");
 
-      console.log(response.data);
+      // console.log(response.data);
       setProductsList(response.data);
     } catch (error) {
       console.log("ERROR FETCHING PRODUCTS: ", error);
