@@ -5,9 +5,10 @@ import removeIcon from "../assets/icons/icon-remove-item.svg";
 
 interface CartItemProps {
   product: Product;
+  onRemoveItem: (productId: number) => void;
 }
 
-export const CartItem = ({ product }: CartItemProps) => {
+export const CartItem = ({ product, onRemoveItem }: CartItemProps) => {
   return (
     <li
       key={product.id}
@@ -23,7 +24,10 @@ export const CartItem = ({ product }: CartItemProps) => {
           <span className="text-rose-500 font-bold">$5.50</span>
         </p>
       </div>
-      <button className="w-5 h-5 border border-rose-400 rounded-full grid place-items-center">
+      <button
+        onClick={() => onRemoveItem(product.id)}
+        className="w-5 h-5 border border-rose-400 rounded-full grid place-items-center"
+      >
         <img src={removeIcon} alt="Remove Item" />
       </button>
     </li>

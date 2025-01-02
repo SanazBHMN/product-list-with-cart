@@ -36,6 +36,13 @@ function App() {
     }));
   };
 
+  const handleRemoveItem = (productId: number) => {
+    setOrder((prevOrder) => {
+      const { [productId]: _, ...remainingOrder } = prevOrder;
+      return remainingOrder;
+    });
+  };
+
   return (
     <div className="p-6">
       {productsList ? (
@@ -49,7 +56,11 @@ function App() {
       ) : (
         <p>LOADING...</p>
       )}
-      <Cart products={productsList} order={order} />
+      <Cart
+        products={productsList}
+        order={order}
+        onRemoveItem={handleRemoveItem}
+      />
     </div>
   );
 }

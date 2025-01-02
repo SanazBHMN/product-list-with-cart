@@ -7,10 +7,11 @@ import { Product } from "../types";
 interface CartProps {
   products: Product[] | null;
   order: Record<number, number>;
+  onRemoveItem: (productId: number) => void;
 }
 
-export const Cart = ({ products, order }: CartProps) => {
-  console.log(order);
+export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
+  // console.log("order: ", order);
 
   if (!products) return null;
 
@@ -25,7 +26,7 @@ export const Cart = ({ products, order }: CartProps) => {
       {cartItems.length === 0 ? (
         <EmptyCart />
       ) : (
-        <CartList cartItems={cartItems} />
+        <CartList cartItems={cartItems} onRemoveItem={onRemoveItem} />
       )}
     </div>
   );
