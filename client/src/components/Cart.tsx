@@ -1,6 +1,7 @@
 // components
 import { EmptyCart } from "./EmptyCart";
 import { CartList } from "./CartList";
+import { DeliveryNote } from "./DeliveryNote";
 // types
 import { Product } from "../types";
 
@@ -47,6 +48,7 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
               ${totalCost.toFixed(2)}
             </span>
           </p>
+          <DeliveryNote />
         </>
       )}
     </div>
