@@ -46,6 +46,9 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
             </span>
           </p>
           <DeliveryNote />
+          <button className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800">
+            Confirm Order
+          </button>
         </>
       )}
     </div>
