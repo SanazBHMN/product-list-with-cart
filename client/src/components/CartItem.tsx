@@ -5,10 +5,17 @@ import removeIcon from "../assets/icons/icon-remove-item.svg";
 
 interface CartItemProps {
   product: Product;
+  totalItems: number;
+  totalCost: number;
   onRemoveItem: (productId: number) => void;
 }
 
-export const CartItem = ({ product, onRemoveItem }: CartItemProps) => {
+export const CartItem = ({
+  product,
+  totalItems,
+  totalCost,
+  onRemoveItem,
+}: CartItemProps) => {
   return (
     <li
       key={product.id}
@@ -17,7 +24,7 @@ export const CartItem = ({ product, onRemoveItem }: CartItemProps) => {
       <div>
         <p className="text-rose-900 font-semibold">{product.name}</p>
         <p className="mt-2">
-          <span className="text-primary font-bold">1x</span>{" "}
+          <span className="text-primary font-bold">{}x</span>{" "}
           <span className="text-rose-500 mx-2">
             @ ${product.price.toFixed(2)}
           </span>{" "}

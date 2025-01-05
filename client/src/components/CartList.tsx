@@ -5,11 +5,20 @@ import { Product } from "../types";
 
 interface CardListProps {
   cartItems: Product[];
+  totalItems: number;
+  totalCost: number;
   onRemoveItem: (productId: number) => void;
 }
 
-export const CartList = ({ cartItems, onRemoveItem }: CardListProps) => {
+export const CartList = ({
+  cartItems,
+  totalItems,
+  totalCost,
+  onRemoveItem,
+}: CardListProps) => {
   console.log(cartItems);
+  console.log(totalItems);
+  console.log(totalCost);
 
   return (
     <ul className="w-full">
@@ -17,6 +26,8 @@ export const CartList = ({ cartItems, onRemoveItem }: CardListProps) => {
         <CartItem
           key={product.id}
           product={product}
+          totalItems={totalItems}
+          totalCost={totalCost}
           onRemoveItem={onRemoveItem}
         />
       ))}
