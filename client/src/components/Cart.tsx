@@ -12,8 +12,6 @@ interface CartProps {
 }
 
 export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
-  console.log("order: ", order);
-
   if (!products) return null;
 
   const cartItems = products.filter((product) => order[product.id] > 0);
@@ -38,8 +36,6 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
         <>
           <CartList
             cartItems={cartItems}
-            totalItems={totalItems}
-            totalCost={totalCost}
             order={order}
             onRemoveItem={onRemoveItem}
           />

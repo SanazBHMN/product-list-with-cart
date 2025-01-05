@@ -54,6 +54,7 @@ function App() {
           handleDecrement={handleDecrement}
         />
       ) : (
+        // TODO: Add react-skeleton
         <p>LOADING...</p>
       )}
       <Cart
