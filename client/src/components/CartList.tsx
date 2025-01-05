@@ -7,6 +7,7 @@ interface CardListProps {
   cartItems: Product[];
   totalItems: number;
   totalCost: number;
+  order: Record<number, number>;
   onRemoveItem: (productId: number) => void;
 }
 
@@ -14,6 +15,7 @@ export const CartList = ({
   cartItems,
   totalItems,
   totalCost,
+  order,
   onRemoveItem,
 }: CardListProps) => {
   console.log(cartItems);
@@ -26,8 +28,7 @@ export const CartList = ({
         <CartItem
           key={product.id}
           product={product}
-          totalItems={totalItems}
-          totalCost={totalCost}
+          order={order}
           onRemoveItem={onRemoveItem}
         />
       ))}

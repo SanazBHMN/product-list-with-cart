@@ -12,7 +12,7 @@ interface CartProps {
 }
 
 export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
-  // console.log("order: ", order);
+  console.log("order: ", order);
 
   if (!products) return null;
 
@@ -40,6 +40,7 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
             cartItems={cartItems}
             totalItems={totalItems}
             totalCost={totalCost}
+            order={order}
             onRemoveItem={onRemoveItem}
           />
           <p className="w-full flex justify-between items-center text-rose-900">
