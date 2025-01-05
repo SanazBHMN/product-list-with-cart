@@ -22,7 +22,9 @@ export const CartItem = ({ product, order, onRemoveItem }: CartItemProps) => {
           <span className="text-rose-500 mx-2">
             @ ${product.price.toFixed(2)}
           </span>{" "}
-          <span className="text-rose-500 font-bold">$5.50</span>
+          <span className="text-rose-500 font-bold">
+            ${(order[product.id] * product.price).toFixed(2)}
+          </span>
         </p>
       </div>
       <button
