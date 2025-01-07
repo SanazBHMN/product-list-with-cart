@@ -2,8 +2,10 @@
 import { EmptyCart } from "./EmptyCart";
 import { CartList } from "./CartList";
 import { DeliveryNote } from "./DeliveryNote";
+import { Modal } from "./Modal";
 // types
 import { Product } from "../types";
+import { TotalOrder } from "./TotalOrder";
 
 interface CartProps {
   products: Product[] | null;
@@ -39,16 +41,16 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
             order={order}
             onRemoveItem={onRemoveItem}
           />
-          <p className="w-full flex justify-between items-center text-rose-900">
-            <span>Order Total</span>
-            <span className="font-extrabold text-3xl">
-              ${totalCost.toFixed(2)}
-            </span>
-          </p>
+          <TotalOrder total={totalCost} />
           <DeliveryNote />
           <button className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800">
             Confirm Order
           </button>
+          <Modal
+            modalCartList={cartItems}
+            order={order}
+            totalCost={totalCost}
+          />
         </>
       )}
     </div>
