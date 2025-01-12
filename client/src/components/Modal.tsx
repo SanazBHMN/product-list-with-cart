@@ -9,9 +9,15 @@ interface ModalProps {
   modalCartList: Product[];
   order: Record<number, number>;
   totalCost: number;
+  onClose: () => void;
 }
 
-export const Modal = ({ modalCartList, order, totalCost }: ModalProps) => {
+export const Modal = ({
+  modalCartList,
+  order,
+  totalCost,
+  onClose,
+}: ModalProps) => {
   // TODO: Code needs to be divided into small components
   return (
     <div
@@ -67,7 +73,10 @@ export const Modal = ({ modalCartList, order, totalCost }: ModalProps) => {
                   <TotalOrder total={totalCost} styles="my-5" />
                 </ul>
               </section>
-              <button className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800">
+              <button
+                onClick={onClose}
+                className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800"
+              >
                 Start New Order
               </button>
             </div>

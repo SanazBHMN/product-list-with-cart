@@ -1,4 +1,3 @@
-import { useState } from "react";
 // components
 import { EmptyCart } from "./EmptyCart";
 import { CartList } from "./CartList";
@@ -11,12 +10,20 @@ import { Product } from "../types";
 interface CartProps {
   products: Product[] | null;
   order: Record<number, number>;
+  isModalOpen: boolean;
+  handleModalOpen: () => void;
+  handleModalClose: () => void;
   onRemoveItem: (productId: number) => void;
 }
 
-export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+export const Cart = ({
+  products,
+  order,
+  isModalOpen,
+  handleModalOpen,
+  handleModalClose,
+  onRemoveItem,
+}: CartProps) => {
   if (!products) return null;
 
   const cartItems = products.filter((product) => order[product.id] > 0);
@@ -30,11 +37,6 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
     (sum, product) => sum + product.price * order[product.id],
     0
   );
-
-  const handleModal = () => {
-    setIsModalOpen(true);
-    console.log(isModalOpen);
-  };
 
   return (
     <div className="bg-white p-6 pb-10 flex flex-col gap-8 justify-center items-center rounded-2xl">
@@ -53,7 +55,7 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
           <TotalOrder total={totalCost} />
           <DeliveryNote />
           <button
-            onClick={handleModal}
+            onClick={handleModalOpen}
             className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800"
           >
             Confirm Order
@@ -63,6 +65,7 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
               modalCartList={cartItems}
               order={order}
               totalCost={totalCost}
+              onClose={handleModalClose}
             />
           )}
         </>

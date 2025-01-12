@@ -10,6 +10,7 @@ import "./App.css";
 function App() {
   const [fetchProductsList, productsList] = useProductsList();
   const [order, setOrder] = useState<Record<number, number>>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProductsList();
@@ -43,6 +44,15 @@ function App() {
     });
   };
 
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setOrder({}); // Reset the App's state
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="p-6">
       {productsList ? (
@@ -60,6 +70,9 @@ function App() {
       <Cart
         products={productsList}
         order={order}
+        isModalOpen={isModalOpen}
+        handleModalOpen={handleModalOpen}
+        handleModalClose={handleModalClose}
         onRemoveItem={handleRemoveItem}
       />
     </div>
