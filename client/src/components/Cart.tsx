@@ -1,11 +1,12 @@
+import { useState } from "react";
 // components
 import { EmptyCart } from "./EmptyCart";
 import { CartList } from "./CartList";
 import { DeliveryNote } from "./DeliveryNote";
 import { Modal } from "./Modal";
+import { TotalOrder } from "./TotalOrder";
 // types
 import { Product } from "../types";
-import { TotalOrder } from "./TotalOrder";
 
 interface CartProps {
   products: Product[] | null;
@@ -14,6 +15,8 @@ interface CartProps {
 }
 
 export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   if (!products) return null;
 
   const cartItems = products.filter((product) => order[product.id] > 0);
@@ -22,10 +25,16 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
     (sum, product) => sum + order[product.id],
     0
   );
+
   const totalCost = cartItems.reduce(
     (sum, product) => sum + product.price * order[product.id],
     0
   );
+
+  const handleModal = () => {
+    setIsModalOpen(true);
+    console.log(isModalOpen);
+  };
 
   return (
     <div className="bg-white p-6 pb-10 flex flex-col gap-8 justify-center items-center rounded-2xl">
@@ -43,14 +52,19 @@ export const Cart = ({ products, order, onRemoveItem }: CartProps) => {
           />
           <TotalOrder total={totalCost} />
           <DeliveryNote />
-          <button className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800">
+          <button
+            onClick={handleModal}
+            className="w-full bg-primary text-white font-semibold py-4 rounded-full hover:bg-rose-800"
+          >
             Confirm Order
           </button>
-          <Modal
-            modalCartList={cartItems}
-            order={order}
-            totalCost={totalCost}
-          />
+          {isModalOpen && (
+            <Modal
+              modalCartList={cartItems}
+              order={order}
+              totalCost={totalCost}
+            />
+          )}
         </>
       )}
     </div>
